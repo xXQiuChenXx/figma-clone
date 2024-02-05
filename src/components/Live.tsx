@@ -1,8 +1,15 @@
+"use client";
+import { useOthers } from "../../liveblocks.config";
+import LiveCursors from "./cursor/LiveCursors";
 
 const Live = () => {
+  const others = useOthers();
+  
   return (
-    <div>Live</div>
-  )
-}
+    <div>
+      <LiveCursors others={others}/>
+    </div>
+  );
+};
 
-export default Live
+export default Live;

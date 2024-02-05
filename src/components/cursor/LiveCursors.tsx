@@ -1,9 +1,8 @@
-import React from 'react'
+import { LiveCursorProps } from "@/types/type";
+import React from "react";
 
-const LiveCursors = () => {
-  return (
-    <div>LiveCursors</div>
-  )
-}
+const LiveCursors = ({ others }: LiveCursorProps) => {
+  return <div>LiveCursors</div>;
+};
 
-export default LiveCursors
+export default LiveCursors;
