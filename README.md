@@ -1,6 +1,6 @@
 ## Figma Clone
 
-Figma Clonee Project build with Next.JS, LiveBlocks, and 
+Figma Clonee Project build with Next.JS, LiveBlocks, and Fabric.JS
 
 First, run the development server:
 
