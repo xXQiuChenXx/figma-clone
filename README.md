@@ -1,5 +1,7 @@
 ## Figma Clone
 
+Figma Clonee Project build with Next.JS, LiveBlocks, and 
+
 First, run the development server:
 
 ```bash
