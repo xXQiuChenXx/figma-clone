@@ -15,6 +15,8 @@ const Cursor = ({ color, message, x, y }: Props) => {
       style={{ transform: `translateX(${x}px) translateY(${y}px)` }}
     >
       <CursorSVG color={color} />
+
+      
     </div>
   );
 };
