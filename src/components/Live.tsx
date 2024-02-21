@@ -1,5 +1,5 @@
 "use client";
-import { PointerEvent, useCallback, useState } from "react";
+import { PointerEvent, useCallback, useEffect, useState } from "react";
 import { useMyPresence, useOthers } from "../../liveblocks.config";
 import LiveCursors from "./cursor/LiveCursors";
 import { CursorMode } from "@/types/type";
