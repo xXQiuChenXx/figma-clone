@@ -5,6 +5,7 @@ import LiveCursors from "./cursor/LiveCursors";
 import { CursorMode, CursorState, Reaction } from "@/types/type";
 import CursorChat from "./cursor/CursorChat";
 import ReactionSelector from "./reaction/ReactionButton";
+import FlyingReaction from "./reaction/FlyingReaction";
 
 const Live = () => {
   const others = useOthers();
@@ -13,7 +14,7 @@ const Live = () => {
     mode: CursorMode.Hidden,
   });
 
-  const [reaections, setReactions] = useState<Reaction[]>([]);
+  const [reactions, setReactions] = useState<Reaction[]>([]);
 
   const handlePointerMove = useCallback((event: PointerEvent) => {
     event.preventDefault();
@@ -115,6 +116,16 @@ const Live = () => {
     >
       <h1 className="text-2xl text-white">Liveblocks Figma Clone</h1>
 
+      {reactions.map((reaction) => (
+        <FlyingReaction
+          key={reaction.timestamp.toString()}
+          x={reaction.point.x}
+          y={reaction.point.y}
+          timestamp={reaction.timestamp}
+          value={reaction.value}
+        />
+      ))}
+      
       {cursor && (
         <CursorChat
           cursor={cursor}
