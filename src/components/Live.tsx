@@ -1,8 +1,13 @@
 "use client";
 import { PointerEvent, useCallback, useEffect, useState } from "react";
-import { useMyPresence, useOthers } from "../../liveblocks.config";
+import {
+  useBroadcastEvent,
+  useEventListener,
+  useMyPresence,
+  useOthers,
+} from "../../liveblocks.config";
 import LiveCursors from "./cursor/LiveCursors";
-import { CursorMode, CursorState, Reaction } from "@/types/type";
+import { CursorMode, CursorState, Reaction, ReactionEvent } from "@/types/type";
 import CursorChat from "./cursor/CursorChat";
 import ReactionSelector from "./reaction/ReactionButton";
 import FlyingReaction from "./reaction/FlyingReaction";
@@ -16,6 +21,8 @@ const Live = () => {
   });
 
   const [reactions, setReactions] = useState<Reaction[]>([]);
+
+  const broadcast = useBroadcastEvent();
 
   useInterval(() => {
     if (
@@ -32,8 +39,28 @@ const Live = () => {
           },
         ])
       );
+
+      broadcast({
+        x: cursor.x,
+        y: cursor.y,
+        value: cursorState.reaction,
+      });
     }
   }, 100);
+
+  useEventListener((eventData) => {
+    const event = eventData.event as ReactionEvent;
+
+    setReactions((r) =>
+      r.concat([
+        {
+          point: { x: event.x, y: event.y },
+          value: event.value  ,
+          timestamp: Date.now(),
+        },
+      ])
+    );
+  });
 
   const handlePointerMove = useCallback((event: PointerEvent) => {
     event.preventDefault();
