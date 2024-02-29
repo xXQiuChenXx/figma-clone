@@ -25,6 +25,12 @@ const Live = () => {
   const broadcast = useBroadcastEvent();
 
   useInterval(() => {
+    setReactions((reaction) =>
+      reaction.filter((r) => r.timestamp > Date.now() - 4000)
+    );
+  }, 1000);
+
+  useInterval(() => {
     if (
       cursorState.mode === CursorMode.Reaction &&
       cursorState.isPressed &&
@@ -55,7 +61,7 @@ const Live = () => {
       r.concat([
         {
           point: { x: event.x, y: event.y },
-          value: event.value  ,
+          value: event.value,
           timestamp: Date.now(),
         },
       ])
