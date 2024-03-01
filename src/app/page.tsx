@@ -1,9 +1,10 @@
 import Live from "@/components/Live";
-import { CollaborativeApp } from "../components/CollaborativeApp";
+import Navbar from "@/components/Navbar";
 
 export default function Page() {
   return (
     <div>
+      <Navbar />
       <Live />
     </div>
   );
