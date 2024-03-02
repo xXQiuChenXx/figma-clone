@@ -6,7 +6,7 @@ import Navbar from "@/components/Navbar";
 import RightSidebar from "@/components/RightSidebar";
 import { useEffect, useRef } from "react";
 import { fabric } from "fabric";
-import { handleCanvasMouseDown, initializeFabric } from "@/lib/canvas";
+import { handleCanvasMouseDown, handleResize, initializeFabric } from "@/lib/canvas";
 
 export default function Page() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -27,6 +27,11 @@ export default function Page() {
         selectedShapeRef,
       });
     });
+
+    window.addEventListener("resize", () => {
+      handleResize({ canvas: fabricRef })
+    })
+
   }, []);
 
   return (
@@ -34,7 +39,7 @@ export default function Page() {
       <Navbar />
       <section className="flex flex-row h-full ">
         <LeftSidebar />
-        <Live />
+        <Live canvasRef={canvasRef}/>
         <RightSidebar />
       </section>
     </main>
